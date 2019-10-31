@@ -3,16 +3,15 @@ import pytest
 
 
 
-@pytest.fixture(autouse="true")
+@pytest.fixture()
 def setup_browser():
     global browser
-    browser = webdriver.Firefox()
     print("setting up the browser")
     browser = webdriver.Firefox()
-    yield browser
+    yield
+    browser.quit()
 
-
-def test_1():
+def test_1(setup_browser):
     print("Running test 1")
     browser.get('http://localhost:8000')
     #browser.get('http://seleniumhq.org/')
