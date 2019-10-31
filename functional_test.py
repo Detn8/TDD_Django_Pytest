@@ -2,12 +2,14 @@ from selenium import webdriver
 import pytest
 
 
-browser = webdriver.Firefox()
-# @pytest.fixture(scope="session")
-# def setup_browser():
-#     print("setting up the browser")
-#     browser = webdriver.Firefox()
-#     yield browser
+
+@pytest.fixture(autouse="true")
+def setup_browser():
+    global browser
+    browser = webdriver.Firefox()
+    print("setting up the browser")
+    browser = webdriver.Firefox()
+    yield browser
 
 
 def test_1():
