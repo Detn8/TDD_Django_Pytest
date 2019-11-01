@@ -8,6 +8,7 @@ def setup_browser():
     global browser
     print("setting up the browser")
     browser = webdriver.Firefox()
+    browser.implicitly_wait(3)
     yield
     browser.quit()
 
